@@ -1,0 +1,36 @@
+{% load static %}
+<html>
+  <head>
+      <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+    <title>Twitter Clone by Julita</title>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="home-link"></a>
+        <h1 class="page-title">
+          Julita's Twitter Clone
+        </h1>
+      </a>
+    </header>
+    {% if user.is_authenticated %}
+    <div class="logged-in-user-info">
+        <h2> Curious about logged in users: </h2>
+        <b>Display Name: </b>{{ user.display_name}} <br />
+        {% if notifications %}
+        <div>
+            <b>notifications: </b> <a href ={% url "notifications" %}> You have {{ notifications|length }} new notifications {% if notifications|length > 1%}s{% endif %}: </a>
+        </div>
+        {% endif %}
+    <h3><a href="/new_tweet/"> Tweet something Good</a></h3>
+    <h3><a href="/logout_view/">Logout</a></h3>
+    {% elif "login" not in request.path %}
+    You can login here... <a href="/login_view/">login</a>
+    {% endif %}
+    </div>
+    <div class="page-content">
+        {% block content %}
+        {% endblock %} 
+    </div>
+   
+  </body>
+</html>

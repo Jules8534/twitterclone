@@ -1,0 +1,17 @@
+
+{% block content %}
+<h1>Login Form</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+
+</form action>
+
+Sign Up Here <a href="/newuser/">sign up</a>
+
+<div>
+    See all users <a href={% url "all_users" %}>all users</a> and <a href={% url "all_tweets_view" %}>all tweets</a> without loggin in.
+</div>
+{% endblock %}
