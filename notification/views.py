@@ -11,7 +11,7 @@ def notifications(request):
         notes = Notification.objects.filter(
             notified_user=request.user).filter(viewed=False)
         new_tweets = Tweet.objects.filter(
-            id_in=[x.tweet.id for x in notes]).order_by(
+            id__in=[x.tweet.id for x in notes]).order_by(
                 "-creation_date")
         for note in notes:
             note.viewed = True

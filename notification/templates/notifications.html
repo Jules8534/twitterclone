@@ -1,12 +1,12 @@
-{% 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 {% comment %}
 <h1>Notifications <a href={% url "user_detail" slug=user.slug %}> @{{user.username}}</a>
 </h1>
-    <h2>
-        <a href={% url 'all_users' %}> See all users</a>
-    </h2>
-    <h1>Tweet Feed</h1>
+<h2>
+    <a href={% url 'all_users' %}> See all users</a>
+</h2>
+<h1>Tweet Feed</h1>
 {% endcomment %}
 <h3>You have {{notes.all|length}} New Notifications</h3>
 {% for tweet in new_tweets %}
@@ -15,7 +15,7 @@
     <a class="link-to-tweet" href={% url "tweet" pk=tweet.pk %}>Link To Tweet Detail</a>
     <ul>
         <li>
-            <b>Author: </b><a href={% user_detail slug=tweet.author.slug %}> @{{tweet.author.username}}</a>
+            <b>Author: </b><a href={% url 'user_detail' slug=tweet.author.slug %}> @{{tweet.author.username}}</a>
         </li>
         <li>
             <b>Written: </b>{{tweet.creation_date}}
