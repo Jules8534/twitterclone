@@ -13,10 +13,8 @@ from notification.models import Notification
 def index(request):
     if request.user.is_authenticated:
         html = "index.html"
-        tweets = Tweet.objects.filter(
-            author__in=request.user.following.all()).order_by(
-                "-creation_date")
-        
+        tweets = Tweet.objects.filter(author__in=request.user.following.all()) | Tweet.objects.filter(author=request.user)
+        tweets = tweets.all().order_by('-creation_date') 
         notifications = Notification.objects.filter(
             notified_user=request.user).filter(viewed=False)
         print(tweets)
@@ -63,11 +61,6 @@ def newuser_view(request):
     return render(request, 'newuser_view_form.html', {"form": form})
 
 def user_detail_view(request, slug):
-
-        # model = Post
-        # template_name = 'user_detail_view.html'
-        # context_object_name = 'post'
-
     html = "user_detail_view.html"
     viewed_user = TwitterUser.objects.get(slug=slug)
     followers = TwitterUser.objects.filter(following=viewed_user)
