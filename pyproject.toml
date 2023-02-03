@@ -6,7 +6,7 @@ authors = ["Julita Marshall <julitamcg5@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-django = "^3.0.6"
+django = "^3.1.14"
 
 [tool.poetry.dev-dependencies]
 
